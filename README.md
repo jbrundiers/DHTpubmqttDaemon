@@ -4,13 +4,13 @@ A daemon reading the data of an DHT22 connected to an Raspberry PI. The read dat
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+
 ### Hardware prerequisites
 
 You need a [Raspberry PI board](http://www.raspberrypi.org/) and a DHT22 sensor connected to Pin 7 (GPIO4) of the Raspberry to use this daemon.
 
 ![Wiring](/DHTwiring.PNG?raw=true)
-
 
 ### Software prerequisites
 
@@ -58,6 +58,11 @@ sudo systemctl start DHTpubMqttDaemon.service
 ``` code
 tail -f /var/log/syslog
 ```
+7. Start an MQTT client and subscripe the topic configured in the config file. You should get a string in JSON format with the read data.
+``` code
+{"Humidity":"42.00","Temperature":"20.10"}
+```
+
 
 ## License
 
