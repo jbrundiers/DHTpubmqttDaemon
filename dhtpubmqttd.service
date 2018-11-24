@@ -1,0 +1,26 @@
+# Copy to /lib/systemd/system
+# sudo systemctl enable dhtpubmqttid.service
+# sudo systemctl start dhtpubmqttd.service
+# sudo systemctl start dhtpubmqttd.service
+# 
+
+[Unit]
+Description=publish DHT data to Mqtt server
+Requires=mosquitto.service
+After=mosquitto.service
+
+     
+[Service]
+Type=forking
+PIDFile=/var/run/dhtpubmqttd.pid
+ExecStart=/opt/dhtpubmqttd/dhtpubmqttd
+#ExecReload=/usr/sbin/nginx -g 'daemon on; master_process on;' -s reload
+#ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/nginx.pid
+#TimeoutStopSec=5
+#KillMode=mixed
+
+#StandardOutput=null
+     
+[Install]
+WantedBy=multi-user.target
+Alias=dhtpubmqttd.service
