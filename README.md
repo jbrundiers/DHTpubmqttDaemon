@@ -1,6 +1,6 @@
 # DHTpubMqttDaemon for Raspberry PI
 
-A daemon reading the data of an DHT22 connected to an Raspberry PI. The read data is transfered to an MQTT server with a given topic.
+A daemon written in C for reading data of an DHT22 sensor connected to an Raspberry PI. The read data will be published to an MQTT server with a given topic.
 
 ## Getting Started
 
