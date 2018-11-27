@@ -31,34 +31,38 @@ apt-get install wiringpi
 **MQTT server** - MQTT server running and reachable form the Raspberry.
 
 ### Installing
-
-1. Edit the config file dhtpubmqttd.conf according to your needs
+1. Build the executable file by running "make"
+``` code
+cd ~/dhtpubmqttd
+make
+```
+2. Edit the config file dhtpubmqttd.conf according to your needs
 ``` code
 nano dhtpubmqttd.conf
 ```
-2. Copy the binary dhtpubmqttd and the config file dhtpubmqttd.conf to /opt/dhtpubmqttd/
+3. Copy the binary dhtpubmqttd and the config file dhtpubmqttd.conf to /opt/dhtpubmqttd/
 ``` code
 sudo mkdir /opt/dhtpubmqttd
 sudo cp dhtpubmqttd /opt/dhtpubmqttd
 sudo cp dhtpubmqttd.conf /opt/dhtpubmqttd
 ```
-3. Copy the service configuration file DHTpubMqttDaemon.service to /lib/systemd/system/
+4. Copy the service configuration file DHTpubMqttDaemon.service to /lib/systemd/system/
 ``` code
 sudo cp DHTpubMqttDaemon.service /lib/systemd/system/
 ```
-4. Enable DHTpubMqttDaemon service
+5. Enable DHTpubMqttDaemon service
 ``` code
 sudo systemctl enable DHTpubMqttDaemon.service
 ```
-5. Start DHTpubMqttDaemon.service
+6. Start DHTpubMqttDaemon.service
 ``` code
 sudo systemctl start DHTpubMqttDaemon.service
 ```
-6. check syslog for errors
+7. check syslog for errors
 ``` code
 tail -f /var/log/syslog
 ```
-7. Start an MQTT client and subscripe the topic configured in the config file. You should get a string in JSON format with the read data.
+8. Start an MQTT client and subscripe the topic configured in the config file. You should get a string in JSON format with the read data.
 ``` code
 {"Humidity":"42.00","Temperature":"20.10"}
 ```
