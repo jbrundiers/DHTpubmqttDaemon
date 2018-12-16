@@ -34,7 +34,7 @@
 #include <wiringPi.h>       /* apt-get install wiringpi */
 
 
-static char version[]   = "DHTpubMqttDaemon v1.00 11/18/2018";
+static char version[]   = "DHTpubMqttDaemon v1.01 12/16/2018";
 
 /* ------------------------------------------------------------------- 
  * libconfig variables 
@@ -49,6 +49,7 @@ int         mqttPort ;
 const char *mqttUser; 
 const char *mqttUserpassword; 
 const char *mqttTopic; 
+const bool  mqttRetain ;
 int         mqttConnectretries = 5 ;
 
 struct mosquitto *mosq = NULL;              /* handle mosqitto library */
@@ -153,7 +154,7 @@ int read_dht22_dat()
         if ( loglevel == DLOG_DEBUG ) syslog( LOG_NOTICE, text );
 
         /* Publish the message to the topic */
-        int ret = mosquitto_publish (mosq, NULL, mqttTopic,strlen (text), text, 0, false);
+        int ret = mosquitto_publish (mosq, NULL, mqttTopic,strlen (text), text, 0, mqttRetain ) ;
 
         if (ret)
         {
@@ -234,6 +235,7 @@ int readConfig()
     config_lookup_string(cf, "mqtt.user", &mqttUser) ;
     config_lookup_string(cf, "mqtt.user_pw", &mqttUserpassword) ;
     config_lookup_string(cf, "mqtt.topic", &mqttTopic) ;
+    config_lookup_bool(cf, "mqtt.retain", &mqttRetain) ;
     config_lookup_int(cf, "mqtt.port", &mqttPort) ;
     config_lookup_int( cf, "mqtt.connectretries", &mqttConnectretries ) ;
 
