@@ -46,21 +46,21 @@ sudo mkdir /opt/dhtpubmqttd
 sudo cp dhtpubmqttd /opt/dhtpubmqttd
 sudo cp dhtpubmqttd.conf /opt/dhtpubmqttd
 ```
-4. Copy the service configuration file DHTpubMqttDaemon.service to /lib/systemd/system/
+4. Copy the service configuration file dhtpubmqttd.service to /lib/systemd/system/
 ``` code
-sudo cp DHTpubMqttDaemon.service /lib/systemd/system/
+sudo cp dhtpubmqttd.service /lib/systemd/system/
 ```
 5. Enable DHTpubMqttDaemon service
 ``` code
-sudo systemctl enable DHTpubMqttDaemon.service
+sudo systemctl enable dhtpubmqttdaemon.service
 ```
 6. Start DHTpubMqttDaemon.service
 ``` code
-sudo systemctl start DHTpubMqttDaemon.service
+sudo systemctl start dhtpubmqttd.service
 ```
 7. check syslog for errors
 ``` code
-tail -f /var/log/syslog
+sudo tail -f /var/log/syslog
 ```
 8. Start an MQTT client and subscripe the topic configured in the config file. You should get a string in JSON format with the read data.
 ``` code
